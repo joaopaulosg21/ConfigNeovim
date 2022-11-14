@@ -6,6 +6,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 set hidden
@@ -13,8 +14,8 @@ set number
 set mouse=a
 set inccommand=split
 set splitbelow
-colorscheme industry
-
+colorscheme dracula
+let java_highlight_functions="style"
 "Config basica nerdTree
 
 set encoding=UTF-8
