@@ -46,6 +46,7 @@ nnoremap <s-b> :NERDTreeRefreshRoot<cr>
 nnoremap <c-p> :Files<CR>
 nnoremap <c-s> :w <CR>
 nnoremap <c-z> :u <CR>
+nnoremap <c-w> :bd! <CR>
 
 "Config do terminal
 " Mude para o modo normal com o esc
@@ -57,8 +58,6 @@ function! OpenTerminal()
   resize 15
 endfunction
 nnoremap <c-j> :call OpenTerminal()<CR>
-"Fecha a janela que estiver selecionada mas nao salva
-nnoremap <s-j> :bd! <CR>
 
 
 "Config Airline  
@@ -66,3 +65,32 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
+
+
+"Config coc-nvim
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+"Config de espaço para autocompletar
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocActionAsync('format')
+"Config do airline para coc-nvim
+let g:airline#extensions#coc#enable=0
+let g:airline#extensions#coc#show_coc_status=1
+let airline#extensions#coc#error_symbol = 'E:'
+let airline#extensions#coc#warning_symbol = 'W:'
+let airline#extensions#coc#stl_format_err = '%C(L%L)'
+let airline#extensions#coc#stl_format_warn = '%C(L%L)'
