@@ -26,9 +26,8 @@ let NERDTreeDirArrows = 1
 let NERDTreeIgnore = []
 let NERDTreeStatusline = ''
 
-
 "nerdtree-git-plugin
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "M",
     \ "Staged"    : "S",
     \ "Untracked" : "✭",
@@ -47,20 +46,23 @@ nnoremap <s-b> :NERDTreeRefreshRoot<cr>
 nnoremap <c-p> :Files<CR>
 nnoremap <c-s> :w <CR>
 nnoremap <c-z> :u <CR>
-nnoremap <c-w> :bd! <CR>
-
-"Config do terminal
+nnoremap <c-w> :q <CR>
+nnoremap <F7> :qa! <CR>
+"Compilar e executar java
+nnoremap <F3> :!javac % <CR>
+nnoremap <F4> :!java % <CR>
+"Config do terminal"
 " Mude para o modo normal com o esc
 tnoremap <Esc> <C-\><C-j>
 " start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+au BufEnter * if &buftype == 'terminal'| :startinsert | endif
 function! OpenTerminal()
   split term://bash
   resize 15
 endfunction
+
+
 nnoremap <c-j> :call OpenTerminal()<CR>
-
-
 "Config Airline  
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -95,3 +97,4 @@ let airline#extensions#coc#error_symbol = 'E:'
 let airline#extensions#coc#warning_symbol = 'W:'
 let airline#extensions#coc#stl_format_err = '%C(L%L)'
 let airline#extensions#coc#stl_format_warn = '%C(L%L)'
+
