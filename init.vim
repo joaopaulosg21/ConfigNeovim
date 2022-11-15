@@ -16,8 +16,8 @@ set inccommand=split
 set splitbelow
 colorscheme dracula
 let java_highlight_functions="style"
-"Config basica nerdTree
 
+"Config basica nerdTree
 set encoding=UTF-8
 "nerdtree
 let NERDTreeShowHidden = 1
@@ -51,6 +51,7 @@ nnoremap <F7> :qa! <CR>
 "Compilar e executar java
 nnoremap <F3> :!javac % <CR>
 nnoremap <F4> :!java % <CR>
+
 "Config do terminal"
 " Mude para o modo normal com o esc
 tnoremap <Esc> <C-\><C-j>
@@ -61,35 +62,40 @@ function! OpenTerminal()
   resize 15
 endfunction
 
-
 nnoremap <c-j> :call OpenTerminal()<CR>
+
 "Config Airline  
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 
-
 "Config coc-nvim
-" Use <c-space> to trigger completion.
+" Comando <c-space> para aparecer as opções de completar.
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
 "Config de espaço para autocompletar
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Add `:Format` command to format current buffer.
+" Comando para aceitar o valor que esta sendo completado
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Comando :Format para formatar o buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
+
 "Config do airline para coc-nvim
 let g:airline#extensions#coc#enable=0
 let g:airline#extensions#coc#show_coc_status=1
