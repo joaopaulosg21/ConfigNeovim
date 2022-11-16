@@ -104,3 +104,7 @@ let airline#extensions#coc#warning_symbol = 'W:'
 let airline#extensions#coc#stl_format_err = '%C(L%L)'
 let airline#extensions#coc#stl_format_warn = '%C(L%L)'
 
+"Config para criar arquivos .java com o nome da class
+let nome = expand("%:r")
+nnoremap <c-k> :echo nome<CR>
+au BufNewFile * if &filetype == 'java' | :call setline(1,"class ".nome." {}") | endif
