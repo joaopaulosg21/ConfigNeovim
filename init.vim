@@ -54,11 +54,12 @@ nnoremap <c-s> :w <CR>
 nnoremap <c-z> :u <CR>
 nnoremap <c-w> :q <CR>
 nnoremap <F7> :qa! <CR>
-inoremap ( () <Left>
-inoremap { {} <Left>
-inoremap [ [] <Left>
-inoremap " "" <Left>
-inoremap ' '' <Left>
+inoremap ( ()<Left>
+inoremap { {}<Left>
+inoremap [ []<Left>
+inoremap " ""<Left>
+inoremap ' ''<Left>
+inoremap sys System.out.println();<Left> 
 "Compilar e executar java
 nnoremap <F3> :!javac % <CR>
 nnoremap <F4> :!java % <CR>
