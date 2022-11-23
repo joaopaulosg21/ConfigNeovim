@@ -17,6 +17,12 @@ set splitbelow
 colorscheme dracula
 let java_highlight_functions="style"
 
+"Configs de espaço do tab"
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
 "Config basica nerdTree
 set encoding=UTF-8
 "nerdtree
