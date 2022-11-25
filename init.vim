@@ -25,12 +25,9 @@ set expandtab
 
 "Config basica nerdTree
 set encoding=UTF-8
-"nerdtree
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let NERDTreeIgnore = []
-let NERDTreeStatusline = ''
 
 "nerdtree-git-plugin
 let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -76,12 +73,6 @@ endfunction
 
 nnoremap <c-j> :call OpenTerminal()<CR>
 
-"Config Airline  
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#formatter = 'default'
-
 "Config coc-nvim
 " Comando <c-space> para aparecer as opções de completar.
 if has('nvim')
@@ -108,15 +99,21 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR
 " Comando :Format para formatar o buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
 
-"Config do airline para coc-nvim
-let g:airline#extensions#coc#enable=0
-let g:airline#extensions#coc#show_coc_status=1
-let airline#extensions#coc#error_symbol = 'E:'
-let airline#extensions#coc#warning_symbol = 'W:'
-let airline#extensions#coc#stl_format_err = '%C(L%L)'
-let airline#extensions#coc#stl_format_warn = '%C(L%L)'
+set updatetime=300
+set nobackup
+set nowritebackup
+
 
 "Config para criar arquivos .java com o nome da class
 let nome = expand("%:r")
 nnoremap <c-k> :echo nome<CR>
 au BufNewFile * if &filetype == 'java' | :call setline(1,"class ".nome." {}") | endif
+
+
+"Config airline
+let g:airline#extensions#whitespace#enabled=0
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_section_z=airline#section#create_right(['line %l/%L'])
+
