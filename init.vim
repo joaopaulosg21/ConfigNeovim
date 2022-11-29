@@ -57,9 +57,10 @@ inoremap [ []<Left>
 inoremap " ""<Left>
 inoremap ' ''<Left>
 inoremap sys System.out.println();<Left> 
-"Compilar e executar java
-nnoremap <F3> :!javac % <CR>
-nnoremap <F4> :!java % <CR>
+"Compilar codigo java
+nnoremap <F2> :!javac % <CR>
+"Formatar codigo
+nnoremap <F3> :Format <CR>
 
 "Config do terminal"
 " Mude para o modo normal com o esc
