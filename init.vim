@@ -73,37 +73,6 @@ endfunction
 
 nnoremap <c-j> :call OpenTerminal()<CR>
 
-"Config coc-nvim
-" Comando <c-space> para aparecer as opções de completar.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-"Config de espaço para autocompletar
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Comando para aceitar o valor que esta sendo completado
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Comando :Format para formatar o buffer.
-command! -nargs=0 Format :call CocActionAsync('format')
-
-set updatetime=300
-set nobackup
-set nowritebackup
-
-
 "Config para criar arquivos .java com o nome da class
 let nome = expand("%:r")
 nnoremap <c-k> :echo nome<CR>
